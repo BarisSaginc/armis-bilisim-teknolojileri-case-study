@@ -1,0 +1,48 @@
+case_file = open("exam 3_testcases.txt", "a+", encoding="utf-8")
+
+friend_file = open("exam 3_friendship_test.txt", "a+", encoding="utf-8")
+
+def readingOfCaseFile():
+    case_file.seek(0)
+    case_numbers_as_string = []
+    case_numbers_as_string_without_newline = []
+    case_numbers = []
+
+    for cursor in case_file:
+        case_numbers_as_string.append(cursor)
+    
+    for cursor2 in case_numbers_as_string:
+        case_numbers_as_string_without_newline.append(cursor2.replace("\n",""))
+    
+    for cursor3 in case_numbers_as_string_without_newline:
+        if cursor3.isdigit():
+            cursor3 = int(cursor3)
+            case_numbers.append(cursor3)
+
+    return case_numbers
+
+
+for input in readingOfCaseFile():
+    print("Enter a user id to suggest some friends:","\033[1m\x1B[3m{}\x1B[0m\033[0m".format(input))
+    
+    nested_friends_dataset = []
+    friend_file.seek(0)
+    for rows_with_dummy in friend_file:
+        rows_with_dummy2 = rows_with_dummy.rstrip("\n")
+        tuble_string_version = rows_with_dummy2.split("\t")
+        nested_friends_dataset.append(tuble_string_version)
+    
+        suggestions_for_id = []
+        for index in nested_friends_dataset:
+            if str(input) == index[0]:
+                suggestions_for_id.append(index[1])
+            elif str(input) == index[1]:
+                suggestions_for_id.append(index[0])
+        
+    if len(suggestions_for_id) == 0:
+        print("There is no such user\n")
+    else:
+        for parameters in suggestions_for_id:
+            print(int(parameters),end="")
+            print(",", end=" ")
+        print("\n")
