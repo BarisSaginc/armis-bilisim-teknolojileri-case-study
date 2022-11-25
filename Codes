@@ -42,7 +42,6 @@ for input in readingOfCaseFile():
     if len(suggestions_for_id) == 0:
         print("There is no such user\n")
     else:
-        
         not_sorted_values = []
         for parameters in suggestions_for_id:
             not_sorted_values.append(int(parameters))
