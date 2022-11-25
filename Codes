@@ -1,8 +1,11 @@
-case_file = open("exam 3_testcases.txt", "a+", encoding="utf-8")
+case_file = open("exam 3_testcases.txt", "a+", encoding="utf-8")#to use writing and reading operation,
+#we must open the file with 'a+' (+ is update.) mode. Dosya oluşturduk.
 
-friend_file = open("exam 3_friendship_test.txt", "a+", encoding="utf-8")
+friend_file = open("exam 3_friendship_test.txt", "a+", encoding="utf-8")#to use writing and reading operation,
+#we must open the file with 'a+' (+ is update.) mode. Dosya oluşturduk.
 
-def readingOfCaseFile():
+
+def readingOfCaseFile(): #Okuma işlemini bir kaç yerde kullandığımızdan ona özel bir fonksiyon oluşturduk.
     case_file.seek(0)
     case_numbers_as_string = []
     case_numbers_as_string_without_newline = []
@@ -42,7 +45,13 @@ for input in readingOfCaseFile():
     if len(suggestions_for_id) == 0:
         print("There is no such user\n")
     else:
+        
+        not_sorted_values = []
         for parameters in suggestions_for_id:
-            print(int(parameters),end="")
+            not_sorted_values.append(int(parameters))
+            sorted_values = sorted(not_sorted_values)
+        for value in sorted_values:
+            print(int(value),end="")
             print(",", end=" ")
+            
         print("\n")
