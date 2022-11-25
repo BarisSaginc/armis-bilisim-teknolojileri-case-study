@@ -1,47 +1,47 @@
-case_file = open("exam 3_testcases.txt", "a+", encoding="utf-8")
+case_file = open("exam 3_testcases.txt", "a+", encoding="utf-8") #open to "exam 3_testcases.txt" as case_file
 
-friend_file = open("exam 3_friendship_test.txt", "a+", encoding="utf-8")
+friend_file = open("exam 3_friendship_test.txt", "a+", encoding="utf-8") #open to "exam 3_friendship_test.txt" as case_file
 
-def readingOfCaseFile():
+def readingOfCaseFile(): #take only integer input values from case_file
     case_file.seek(0)
     case_numbers_as_string = []
     case_numbers_as_string_without_newline = []
     case_numbers = []
 
-    for cursor in case_file:
+    for cursor in case_file: #take all line to the list
         case_numbers_as_string.append(cursor)
     
-    for cursor2 in case_numbers_as_string:
+    for cursor2 in case_numbers_as_string: seperate all lines from \n
         case_numbers_as_string_without_newline.append(cursor2.replace("\n",""))
     
-    for cursor3 in case_numbers_as_string_without_newline:
+    for cursor3 in case_numbers_as_string_without_newline: #seperate all integer lines from **** lines
         if cursor3.isdigit():
             cursor3 = int(cursor3)
             case_numbers.append(cursor3)
 
-    return case_numbers
+    return case_numbers #returns only integer parameters as inputs
 
 
-for input in readingOfCaseFile():
-    print("Enter a user id to suggest some friends:","\033[1m\x1B[3m{}\x1B[0m\033[0m".format(input))
+for input in readingOfCaseFile(): #travel on each input
+    print("Enter a user id to suggest some friends:","\033[1m\x1B[3m{}\x1B[0m\033[0m".format(input)) #to make bold and italic at black board for inputs
     
     nested_friends_dataset = []
     friend_file.seek(0)
-    for rows_with_dummy in friend_file:
+    for rows_with_dummy in friend_file: #travel on each line of friend_file and get rid of all \n and \t sign to get only integers
         rows_with_dummy2 = rows_with_dummy.rstrip("\n")
         tuble_string_version = rows_with_dummy2.split("\t")
         nested_friends_dataset.append(tuble_string_version)
     
         suggestions_for_id = []
-        for index in nested_friends_dataset:
+        for index in nested_friends_dataset: #to get suggestion ids according to input value
             if str(input) == index[0]:
                 suggestions_for_id.append(index[1])
             elif str(input) == index[1]:
                 suggestions_for_id.append(index[0])
         
-    if len(suggestions_for_id) == 0:
+    if len(suggestions_for_id) == 0: #if we have no suggestion, we will take an error
         print("There is no such user\n")
-    else:
+    else: #if we have suggestion, we sort it and order the line by giving comma to get desired order by the firm
         not_sorted_values = []
         for parameters in suggestions_for_id:
             not_sorted_values.append(int(parameters))
